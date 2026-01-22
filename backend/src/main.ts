@@ -2,6 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
+import { randomUUID } from 'crypto';
+
+(global as any).crypto = { randomUUID };
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
