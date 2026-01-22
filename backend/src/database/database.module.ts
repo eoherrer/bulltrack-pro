@@ -13,8 +13,13 @@ import { DatabaseInitService } from './database-init.service';
         const databaseUrl = configService.get('DATABASE_URL');
         const isProduction = configService.get('NODE_ENV') === 'production';
 
+        // Log para debug
+        console.log('DATABASE_URL exists:', !!databaseUrl);
+        console.log('NODE_ENV:', configService.get('NODE_ENV'));
+
         // Si hay DATABASE_URL (Railway/Render), usarla directamente
         if (databaseUrl) {
+          console.log('Using DATABASE_URL for connection');
           return {
             type: 'postgres',
             url: databaseUrl,
@@ -26,6 +31,8 @@ import { DatabaseInitService } from './database-init.service';
         }
 
         // Configuración local con variables individuales
+        console.log('Using individual DB variables (local config)');
+        console.log('DB_HOST:', configService.get('DB_HOST'));
         return {
           type: 'postgres',
           host: configService.get('DB_HOST'),
