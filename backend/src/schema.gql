@@ -1,0 +1,119 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthPayload {
+  accessToken: String!
+  user: AuthUser!
+}
+
+type AuthUser {
+  email: String!
+  id: String!
+  name: String!
+}
+
+type BullConnection {
+  edges: [BullEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type BullEdge {
+  cursor: String!
+  node: BullType!
+}
+
+input BullFiltersInput {
+  favoritesOnly: Boolean
+  origen: [BullOrigen!]
+  paraVaquillona: Boolean
+  pelaje: [BullPelaje!]
+  search: String
+}
+
+"""Bull ordering options"""
+enum BullOrderBy {
+  SCORE_ASC
+  SCORE_DESC
+}
+
+"""Bull origin type"""
+enum BullOrigen {
+  CATALOGO
+  PROPIO
+}
+
+"""Bull coat color"""
+enum BullPelaje {
+  COLORADO
+  NEGRO
+}
+
+type BullStats {
+  carcasa: Int!
+  crecimiento: Int!
+  facilidadParto: Int!
+  moderacion: Int!
+  reproduccion: Int!
+}
+
+type BullType {
+  bullScore: Float!
+  caracteristicaDestacada: String
+  caravana: String!
+  edadMeses: Int!
+  id: Int!
+  isFavorite: Boolean!
+  nombre: String!
+  origen: BullOrigen!
+  pelaje: BullPelaje!
+  raza: String!
+  stats: BullStats!
+  uso: BullUso!
+}
+
+"""Bull usage type"""
+enum BullUso {
+  VACA
+  VAQUILLONA
+}
+
+input BullsQueryInput {
+  after: String
+  filters: BullFiltersInput
+  first: Int = 10
+  orderBy: BullOrderBy = SCORE_DESC
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  login(input: LoginInput!): AuthPayload!
+  toggleFavorite(input: ToggleFavoriteInput!): ToggleFavoriteResult!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Query {
+  bull(id: Int!): BullType
+  bulls(input: BullsQueryInput): BullConnection!
+  me: AuthUser!
+}
+
+input ToggleFavoriteInput {
+  bullId: Int!
+}
+
+type ToggleFavoriteResult {
+  bullId: Int!
+  isFavorite: Boolean!
+}
