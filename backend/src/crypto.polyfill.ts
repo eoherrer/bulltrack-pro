@@ -1,1 +1,5 @@
-(global as any).crypto = require('crypto');
+import * as nodeCrypto from 'crypto';
+
+if (!(global as any).crypto) {
+  (global as any).crypto = nodeCrypto;
+}
