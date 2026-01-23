@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui';
 import { RadarChart } from './RadarChart';
 import { ScoreBar } from './ScoreBar';
 import { TOGGLE_FAVORITE_MUTATION } from '@/lib/graphql/mutations';
+import { BULLS_QUERY } from '@/lib/graphql/queries';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +20,7 @@ export function BullCard({ bull, rank, onFavoriteToggle }: BullCardProps) {
   const { isAuthenticated } = useAuth();
 
   const [toggleFavorite, { loading: toggleLoading }] = useMutation(TOGGLE_FAVORITE_MUTATION, {
+    refetchQueries: [{ query: BULLS_QUERY }],
     onCompleted: (data) => {
       if (onFavoriteToggle) {
         onFavoriteToggle(data.toggleFavorite.bullId, data.toggleFavorite.isFavorite);
