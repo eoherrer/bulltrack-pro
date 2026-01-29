@@ -4,8 +4,8 @@ Advanced bovine genetic ranking platform for cattle producers. This project is a
 
 ## Live Demo
 
-- **Frontend:** [https://bulltrack-pro.vercel.app](https://bulltrack-pro.vercel.app) _(actualizar con tu URL)_
-- **Backend GraphQL Playground:** [https://bulltrack-backend.railway.app/graphql](https://bulltrack-backend.railway.app/graphql) _(actualizar con tu URL)_
+- **Frontend:** https://bulltrack-pro-frontend.vercel.app/dashboard
+- **Backend GraphQL Playground:** https://bulltrack-pro-production.up.railway.app/graphql
 
 ## Project Structure
 
